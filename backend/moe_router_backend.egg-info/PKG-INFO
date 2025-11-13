@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: moe-router-backend
+Version: 0.1.0
+Summary: FastAPI backend for the MOE router demo
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.111.0
+Requires-Dist: uvicorn[standard]>=0.30.0
+Requires-Dist: pydantic>=2.8.0
+Requires-Dist: pydantic-settings>=2.2.1
+Requires-Dist: httpx>=0.27.0
+Requires-Dist: sqlalchemy>=2.0.32
+Requires-Dist: aiosqlite>=0.20.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.2; extra == "dev"
+Requires-Dist: ruff>=0.5.5; extra == "dev"
+
+# MOE Router Backend
+
+Este directorio reune el backend FastAPI del demo Mixture-of-Experts (MoE) Router descrito en `docs/03_estructura_general.md`.
+
+## Estructura
+- `app/main.py`: punto de entrada FastAPI y definicion de rutas.
+- `app/config`: carga de configuraciones basada en Pydantic Settings.
+- `app/core`: motor de enrutamiento y reglas heuristicas.
+- `app/providers`: clientes para OpenAI y Gemini.
+- `app/models`: esquemas compartidos para request y response.
+- `app/metrics`: registro de latencia, costo y score en SQLite.
+
+## Primeros pasos
+1. `python -m venv .venv`
+2. `.\.venv\Scripts\activate`
+3. `pip install -e .[dev]`
+4. `uvicorn app.main:app --reload`
+
+Ajusta las reglas dentro de `app/core` y los clientes dentro de `app/providers` para conectar con APIs reales o mejorar la logica del router.
